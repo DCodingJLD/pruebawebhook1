@@ -1,0 +1,8 @@
+name: mi-primer-workflow
+run-name: is learning GHA
+on:	[push]
+jobs:
+	mijob:
+		runs-on: ubuntu-latest
+		steps:
+			-run: ls
