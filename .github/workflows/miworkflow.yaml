@@ -16,8 +16,14 @@ jobs:
   - name: List files in the repository
     run: ls ${{ github.workspace }}
 
-  - name: List FILE
+  - name: cat FILE
     run: ls ${{ github.workspace }}/nuevo.txt
+
+  - name: cat FILE to env
+    run: export MYENV=$(cat ${{ github.workspace }}/nuevo.txt)
+
+  - name: env
+    run: env
 
   - name: Webhook
     uses: distributhor/workflow-webhook@v2
