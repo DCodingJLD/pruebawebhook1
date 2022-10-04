@@ -32,11 +32,15 @@ jobs:
 
   - name: echo2
     id: step6
-    run: echo "mienv="`cat ${{ github.workspace }}/nuevo.txt` >> GITHUB_ENV
+    run: echo "mienv="`cat ${{ github.workspace }}/nuevo.txt` >> $GITHUB_ENV
+
+  - name: echo4
+    id: step8
+    run: echo ${{ env.mienv }}
 
   - name: echo3
     id: step7
-    run: echo ${{ env.mienv }}
+    run: env
 
   - name: Webhook
     uses: distributhor/workflow-webhook@v2
