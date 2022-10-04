@@ -10,8 +10,18 @@ jobs:
  mijob:
   runs-on: ubuntu-latest
   steps:
-  - run: pwd
-  - run: ls
+  - name: Checkout code
+    uses: actions/checkout@v1
+
+  - name: Read file contents
+    id: read_file
+    uses: andstor/file-reader-action@v1
+    with:
+     path: "package.json"
+
+  - name: File contents
+    run: echo "${ steps.read_file.outputs.contents }"
+
   - name: Webhook
     uses: distributhor/workflow-webhook@v2
     env:
