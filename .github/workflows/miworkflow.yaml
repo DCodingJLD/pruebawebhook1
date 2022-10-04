@@ -1,10 +1,11 @@
 name: mi-primer-workflow
 run-name: is learning GHA
-on: [push]
- branches:
-  - 'main'
- paths:
-  - '**.txt'
+on:
+ push:
+  branches:
+   - 'main'
+  paths:
+   - '**.txt'
 jobs:
  mijob:
   runs-on: ubuntu-latest
@@ -13,3 +14,4 @@ jobs:
     uses: distributhor/workflow-webhook@v2
     env:
      webhook_url: https://events.hookdeck.com/e/src_P61PLvB5SC32
+
