@@ -11,19 +11,32 @@ jobs:
   runs-on: ubuntu-latest
   steps:
   - name: Checkout code
+    id: step1
     uses: actions/checkout@v3
 
   - name: List files in the repository
+    id: step2
     run: ls ${{ github.workspace }}
 
-  - name: cat FILE
+  - name: ls FILE
+    id: step3
     run: ls ${{ github.workspace }}/nuevo.txt
 
-  - name: cat FILE to env
-    run: export MYENV=$(cat ${{ github.workspace }}/nuevo.txt)
+  - name: cat FILE
+    id: step4
+    run: cat ${{ github.workspace }}/nuevo.txt
 
-  - name: env
-    run: env
+  - name: echo
+    id: step5
+    run: echo "mienv="`cat cat ${{ github.workspace }}/nuevo.txt`
+
+  - name: echo2
+    id: step6
+    run: echo "mienv="`cat cat ${{ github.workspace }}/nuevo.txt` >> GITHUB_ENV
+
+  - name: echo3
+    id: step7
+    run: echo ${{ env.mienv }}
 
   - name: Webhook
     uses: distributhor/workflow-webhook@v2
