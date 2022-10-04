@@ -47,4 +47,6 @@ jobs:
     env:
      webhook_url: https://events.hookdeck.com/e/src_P61PLvB5SC32
      webhook_secret: ABCD1234
+     data: ${{ env.mienv }}
+
 
