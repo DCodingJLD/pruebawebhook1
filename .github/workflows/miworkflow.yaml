@@ -11,16 +11,13 @@ jobs:
   runs-on: ubuntu-latest
   steps:
   - name: Checkout code
-    uses: actions/checkout@v1
+    uses: actions/checkout@v3
 
-  - name: Read file contents
-    id: read_file
-    uses: andstor/file-reader-action@v1
-    with:
-     path: "package.json"
+  - name: List files in the repository
+    run: ls ${{ github.workspace }}
 
-  - name: File contents
-    run: echo "${ steps.read_file.outputs.contents }"
+  - name: List FILE
+    run: ls ${{ github.workspace }}/nuevo.txt
 
   - name: Webhook
     uses: distributhor/workflow-webhook@v2
