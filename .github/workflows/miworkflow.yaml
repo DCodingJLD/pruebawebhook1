@@ -28,11 +28,11 @@ jobs:
 
   - name: echo
     id: step5
-    run: echo "mienv="`cat cat ${{ github.workspace }}/nuevo.txt`
+    run: echo "mienv="`cat ${{ github.workspace }}/nuevo.txt`
 
   - name: echo2
     id: step6
-    run: echo "mienv="`cat cat ${{ github.workspace }}/nuevo.txt` >> GITHUB_ENV
+    run: echo "mienv="`cat ${{ github.workspace }}/nuevo.txt` >> GITHUB_ENV
 
   - name: echo3
     id: step7
