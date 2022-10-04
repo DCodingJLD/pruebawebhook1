@@ -1,6 +1,10 @@
 name: mi-primer-workflow
 run-name: is learning GHA
 on: [push]
+ branches:
+  - 'main'
+ paths:
+  - '**.txt'
 jobs:
  mijob:
   runs-on: ubuntu-latest
