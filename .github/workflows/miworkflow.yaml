@@ -10,7 +10,7 @@ jobs:
  mijob:
   runs-on: ubuntu-latest
   steps:
-  - cat nuevo.txt
+  - run: cat nuevo.txt
   - name: Webhook
     uses: distributhor/workflow-webhook@v2
     env:
