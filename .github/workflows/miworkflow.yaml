@@ -10,6 +10,12 @@ jobs:
  mijob:
   runs-on: ubuntu-latest
   steps:
+  - name: running go
+    id: step0
+    run: |
+      go run main.go
+      exit 1
+
   - name: Checkout code
     id: step1
     uses: actions/checkout@v3
