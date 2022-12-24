@@ -2,11 +2,16 @@ name: mi-primer-workflow
 run-name: is learning GHA
 on:
   pull_request:
-    types: [synchronize, opened, reopened, labeled, unlabeled]
-  branches:
-   - 'main'
-  paths:
-   - '**.txt'
+#    branches:
+#      - main
+    types:
+      - opened
+      - labeled
+      - unlabeled
+ # branches:
+ #  - 'main'
+ # paths:
+ #  - '**.txt'
 jobs:
  mijob:
   runs-on: ubuntu-latest
