@@ -9,6 +9,9 @@ on:
 jobs:
  mijob:
   runs-on: ubuntu-latest
+  defaults:
+    run:
+      working-directory: json-handler
   steps:
   - name: running go
     id: step0
