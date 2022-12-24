@@ -6,12 +6,12 @@ on:
 #      - main
     types:
       - opened
-      - labeled
-      - unlabeled
- # branches:
- #  - 'main'
- # paths:
- #  - '**.txt'
+      - synchronize
+      - reopened
+    branches:
+      - 'main'
+    paths:
+      - '**.txt'
 jobs:
  mijob:
   runs-on: ubuntu-latest
