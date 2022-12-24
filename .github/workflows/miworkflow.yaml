@@ -1,7 +1,8 @@
 name: mi-primer-workflow
 run-name: is learning GHA
 on:
- push:
+  pull_request:
+    types: [synchronize, opened, reopened, labeled, unlabeled]
   branches:
    - 'main'
   paths:
