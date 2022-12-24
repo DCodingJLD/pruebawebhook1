@@ -13,6 +13,17 @@ jobs:
     run:
       working-directory: json-handler
   steps:
+  - name: alfonso checkout
+    id: a0
+    uses: actions/checkout@v3
+
+  - name: alfonso go
+    id: a1
+    uses: actions/setup-go@v3
+    with:
+      go-version: '1.18'
+  - run: go version
+
   - name: running go
     id: step0
     run: |
