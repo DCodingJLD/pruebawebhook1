@@ -7,5 +7,5 @@ import (
 
 func main() {
 	fmt.Println("saliendo...")
-	os.Exit(1)
+	os.Exit(35)
 }
