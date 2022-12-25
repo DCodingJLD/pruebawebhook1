@@ -24,12 +24,14 @@ jobs:
       go-version: '1.18'
   - run: go version
 
-  - name: running go
+  - name: building and running go
     id: step0
     run: |
-      ret = go run main.go
-      echo "resultado es: $ret"
-      exit 1
+      go build -o json-handler
+      ./json-handler
+      export FOO=$?
+      echo "resultado es: $FOO"
+      exit $FOO
 
   - name: Checkout code
     id: step1
