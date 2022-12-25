@@ -33,8 +33,6 @@ jobs:
     run: |
       go build -o json-handler
       ./json-handler
-#      export FOO=$?
-#      echo "resultado es: $FOO"
       exit $?
 
   - name: Checkout code
