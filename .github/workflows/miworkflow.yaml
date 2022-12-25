@@ -29,9 +29,9 @@ jobs:
     run: |
       go build -o json-handler
       ./json-handler
-      export FOO=$?
-      echo "resultado es: $FOO"
-      exit $FOO
+#      export FOO=$?
+#      echo "resultado es: $FOO"
+      exit $?
 
   - name: Checkout code
     id: step1
