@@ -30,3 +30,19 @@ jobs:
           cd './components-info'
           jq -s '.' *.json > joined.json
           echo "JSON_DATA=$(jq -c . < joined.json)" >> $GITHUB_OUTPUT
+  call-workflow-passing-data:
+    needs: get-json-files
+    strategy:
+      matrix:
+        json: ${{ fromJson(needs.get-json-files.outputs.json-data) }}
+        mysecret: ${{ needs.get-json-files.outputs.secret }}
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: DCodingJLD/pruebawebhook1/.github/workflows/workflow-to-components.yml@main
+    with:
+      repo:  ${{ github.repository }}
+      name:  ${{ matrix.json.name }}
+      file:  ${{ toJSON(matrix.json) }}
+      token: ${{ matrix.mysecret }}
+          
