@@ -45,5 +45,5 @@ jobs:
       repo:  ${{ github.repository }}
       name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
-      token: ${{ needs.get-json-files.outputs.secret }}
+      token: ${{ needs.get-json-files.env.COMPONENTS_API_TOKEN }}
           
