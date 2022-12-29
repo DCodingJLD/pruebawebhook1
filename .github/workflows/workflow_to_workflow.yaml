@@ -9,7 +9,7 @@ on:
 
 jobs:
   get-json-files:
-    runs-on: sfdc-hk-ubuntu-latest
+    runs-on: ubuntu-latest
     env:
       COMPONENTS_API_TOKEN: ${{secrets.COMPONENTS_API_TOKEN}}
     outputs:
