@@ -17,6 +17,7 @@ jobs:
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
       secret: ${{ secrets.COMPONENTS_API_TOKEN }}
+      misecretito: cachulo
     steps: 
       - name: Checkout
         uses: actions/checkout@v3
@@ -45,5 +46,5 @@ jobs:
       repo:  ${{ github.repository }}
       name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
-      token: ${{ needs.get-json-files.env.COMPONENTS_API_TOKEN }}
+      token: ${{ needs.get-json-files.outputs.misecretito }}
           
