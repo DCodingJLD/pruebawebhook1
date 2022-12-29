@@ -16,8 +16,7 @@ jobs:
       COMPONENTS_API_TOKEN: ${{secrets.COMPONENTS_API_TOKEN}}
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
-      secret: ${{ secrets.COMPONENTS_API_TOKEN }}
-      misecretito: ${{ steps.devolvertoken.outputs.MI_TOJEN }}
+      misecretito: ${{ steps.devolvertoken.outputs.MI_TOKEN }}
     steps: 
       - name: Checkout
         uses: actions/checkout@v3
