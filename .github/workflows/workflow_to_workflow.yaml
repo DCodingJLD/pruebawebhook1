@@ -35,7 +35,6 @@ jobs:
     strategy:
       matrix:
         json: ${{ fromJson(needs.get-json-files.outputs.json-data) }}
-        mysecret: ${{ needs.get-json-files.outputs.secret }}
     permissions:
       contents: read
       pull-requests: write
@@ -44,5 +43,5 @@ jobs:
       repo:  ${{ github.repository }}
       name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
-      token: ${{ matrix.mysecret }}
+      token: ${{ github.run_id }}
           
