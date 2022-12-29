@@ -1,0 +1,52 @@
+name: Workflow that webhooks to components
+on:
+  workflow_call:
+    inputs:
+      repo:
+        description: 'The github repository that is sending information'
+        required: false
+        type: string
+      name:
+        required: false
+        type: string
+        default: 'component'
+      file:
+        required: false
+        type: string
+      token:
+        required: false
+        type: string
+
+jobs:
+  triage:
+    runs-on: sfdc-hk-ubuntu-latest
+    env:
+      repo: ${{ inputs.repo }}
+      name: ${{ inputs.name }}
+      file: ${{ inputs.file }}
+      COMPONENTS_API_TOKEN: ${{inputs.token}}
+    defaults:
+      run:
+        working-directory: json-handler
+    steps:
+      - name: Check out repo's default branch
+        uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.18'
+      - run: go version
+      - name: printing out the parsed information
+        run: |
+          echo "The repo that is sending the information is : $repo" 
+          echo "The name of the component is : $name"
+          echo "The json is : $file"
+      - name: Changing sed
+        run: |
+          echo "secrets are $COMPONENTS_API_TOKEN"
+          echo $COMPONENTS_API_TOKEN
+          FILEN=$file
+          # remove carry return\eol\tab
+          FILES="${FILEN//[$'\r\n\t']}" 
+          echo "The json is : $FILES"
+          go run main.go "-json=$FILES"
