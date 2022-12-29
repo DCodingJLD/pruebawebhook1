@@ -13,6 +13,8 @@ on:
 jobs:
  mijob:
   runs-on: ubuntu-latest
+  env:
+    MISECRETO: ${{secrets.MISECRETO}}
   defaults:
     run:
       working-directory: json-handler
@@ -31,6 +33,10 @@ jobs:
   - name: building and running go
     id: step0
     run: |
+      echo "misecreto...:"
+      echo $MISECRETO
+      echo "ahora con brackets"
+      echo ${{secrets.MISECRETO}}
       go build -o json-handler
       ./json-handler
       exit $?
@@ -75,5 +81,3 @@ jobs:
      webhook_url: https://events.hookdeck.com/e/src_P61PLvB5SC32
      webhook_secret: ABCD1234
      data: ${{ env.mienv }}
-
-
