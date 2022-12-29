@@ -19,7 +19,7 @@ on:
 
 jobs:
   triage:
-    runs-on: sfdc-hk-ubuntu-latest
+    runs-on: ubuntu-latest
     env:
       repo: ${{ inputs.repo }}
       name: ${{ inputs.name }}
