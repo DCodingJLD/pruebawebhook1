@@ -14,7 +14,7 @@ on:
         required: false
         type: string
       token:
-        required: false
+        required: true
         type: string
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
       repo: ${{ inputs.repo }}
       name: ${{ inputs.name }}
       file: ${{ inputs.file }}
-      COMPONENTS_API_TOKEN: ${{inputs.token}}
+      token: ${{inputs.token}}
     defaults:
       run:
         working-directory: json-handler
@@ -41,10 +41,13 @@ jobs:
           echo "The repo that is sending the information is : $repo" 
           echo "The name of the component is : $name"
           echo "The json is : $file"
+          echo "the token is : $token"
       - name: Changing sed
         run: |
-          echo "secrets are $COMPONENTS_API_TOKEN"
-          echo $COMPONENTS_API_TOKEN
+          echo "secrets are $token"
+          echo $token
+          echo "ahora sin bracket"
+          echo ${{inputs.token}}
           FILEN=$file
           # remove carry return\eol\tab
           FILES="${FILEN//[$'\r\n\t']}" 
