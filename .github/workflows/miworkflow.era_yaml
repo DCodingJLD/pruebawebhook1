@@ -1,14 +1,20 @@
 name: mi-primer-workflow
 run-name: is learning GHA
 on:
- push:
-  branches:
-   - 'main'
-  paths:
-   - '**.txt'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened  
+    branches:
+      - 'main'
+    paths:
+      - '**.txt'
 jobs:
  mijob:
   runs-on: ubuntu-latest
+  env:
+    MISECRETO: ${{secrets.MISECRETO}}
   defaults:
     run:
       working-directory: json-handler
@@ -27,6 +33,10 @@ jobs:
   - name: building and running go
     id: step0
     run: |
+      echo "misecreto...:"
+      echo $MISECRETO
+      echo "ahora con brackets"
+      echo ${{secrets.MISECRETO}}
       go build -o json-handler
       ./json-handler
       exit $?
@@ -37,7 +47,8 @@ jobs:
 
   - name: List files in the repository
     id: step2
-    run: ls ${{ github.workspace }}
+    # run: ls ${{ github.workspace }}
+    run: exit 1
 
   - name: ls FILE
     id: step3
@@ -70,5 +81,3 @@ jobs:
      webhook_url: https://events.hookdeck.com/e/src_P61PLvB5SC32
      webhook_secret: ABCD1234
      data: ${{ env.mienv }}
-
-
