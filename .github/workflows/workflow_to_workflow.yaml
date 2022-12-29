@@ -45,5 +45,5 @@ jobs:
       repo:  ${{ github.repository }}
       name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
-      token: ${{ env.mascot }}
+      token: ${{ github.mascot }}
           
