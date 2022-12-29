@@ -6,6 +6,8 @@ on:
       - 'main'
     paths:
       - 'components-info/*.json'
+env:
+  mascot: Mona
 
 jobs:
   get-json-files:
@@ -43,5 +45,5 @@ jobs:
       repo:  ${{ github.repository }}
       name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
-      token: ${{ github.run_id }}
+      token: ${{ env.mascot }}
           
