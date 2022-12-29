@@ -17,7 +17,7 @@ jobs:
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
       secret: ${{ secrets.COMPONENTS_API_TOKEN }}
-      misecretito: secret
+      misecretito: ${{ steps.devolvertoken.outputs.MI_TOJEN }}
     steps: 
       - name: Checkout
         uses: actions/checkout@v3
@@ -30,9 +30,13 @@ jobs:
           echo $COMPONENTS_API_TOKEN
           echo "the secret with brackets is..."
           echo ${{secrets.COMPONENTS_API_TOKEN}}
+          echo "MI_TOKEN=$COMPONENTS_API_TOKEN"
           cd './components-info'
           jq -s '.' *.json > joined.json
           echo "JSON_DATA=$(jq -c . < joined.json)" >> $GITHUB_OUTPUT
+      - name: Devolver token si dios quiere
+        id: devolvertoken
+        run: echo "MI_TOKEN=$COMPONENTS_API_TOKEN" >> $GITHUB_OUTPUT
   call-workflow-passing-data:
     needs: get-json-files
     strategy:
