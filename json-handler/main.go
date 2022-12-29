@@ -5,7 +5,18 @@ import (
 	"os"
 )
 
+func mainWithExit() int {
+	defer fmt.Println("difiere")
+
+	fmt.Println("funcionnnnnn")
+
+	return (35)
+
+}
+
 func main() {
-	fmt.Println("saliendo...")
-	os.Exit(0)
+
+	ret := mainWithExit()
+
+	os.Exit(ret)
 }
