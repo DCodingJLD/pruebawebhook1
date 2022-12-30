@@ -24,7 +24,7 @@ jobs:
       repo: ${{ inputs.repo }}
       name: ${{ inputs.name }}
       file: ${{ inputs.file }}
-      repo-token: ${{secrets.token}}
+      repotoken: ${{secrets.token}}
     defaults:
       run:
         working-directory: json-handler
@@ -41,11 +41,11 @@ jobs:
           echo "The repo that is sending the information is : $repo" 
           echo "The name of the component is : $name"
           echo "The json is : $file"
-          echo "the token is : $token"
+          echo "the token is : $repotoken"
       - name: Changing sed
         run: |
-          echo "secrets are $repo-token"
-          echo $repo-token
+          echo "secrets are $repotoken"
+          echo $repotoken
           echo "ahora sin bracket"
           echo ${{secrets.token}}
           FILEN=$file
