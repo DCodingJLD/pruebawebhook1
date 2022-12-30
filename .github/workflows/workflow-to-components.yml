@@ -14,7 +14,7 @@ on:
         required: false
         type: string
       token:
-        required: true
+        required: false
         type: string
 
 jobs:
