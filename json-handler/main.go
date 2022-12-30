@@ -9,8 +9,11 @@ func mainWithExit() int {
 	defer fmt.Println("difiere")
 
 	fmt.Println("funcionnnnnn")
+	
+	mitoken := os.Getenv("repotoken")
+	fmt.Println("mitoken:", mitoken)
 
-	return (35)
+	return (0)
 
 }
 
