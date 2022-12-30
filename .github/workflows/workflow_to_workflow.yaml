@@ -13,7 +13,7 @@ jobs:
   get-json-files:
     runs-on: ubuntu-latest
     env:
-      COMPONENTS_API_TOKEN: ${{secrets.COMPONENTS_API_TOKEN}}
+      COMPONENTS_API_TOKEN: ${{secrets.ORG_SECRET}}
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
       misecretito: ${{ steps.devolvertoken.outputs.MI_TOKEN }}
@@ -28,14 +28,14 @@ jobs:
           echo "the secret is ..."
           echo $COMPONENTS_API_TOKEN
           echo "the secret with brackets is..."
-          echo ${{secrets.COMPONENTS_API_TOKEN}}
-          echo "MI_TOKEN=$COMPONENTS_API_TOKEN"
+          echo ${{secrets.ORG_SECRET}}
+          echo "MI_TOKEN=$ORG_SECRET"
           cd './components-info'
           jq -s '.' *.json > joined.json
           echo "JSON_DATA=$(jq -c . < joined.json)" >> $GITHUB_OUTPUT
       - name: Devolver token si dios quiere
         id: devolvertoken
-        run: echo "MI_TOKEN=$COMPONENTS_API_TOKEN" >> $GITHUB_OUTPUT
+        run: echo "MI_TOKEN=$ORG_SECRET" >> $GITHUB_OUTPUT
   call-workflow-passing-data:
     needs: get-json-files
     strategy:
@@ -50,5 +50,5 @@ jobs:
       name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
     secrets:
-      token: ${{secrets.COMPONENTS_API_TOKEN}}
+      token: ${{secrets.ORG_SECRET}}
           
