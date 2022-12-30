@@ -13,7 +13,7 @@ jobs:
   get-json-files:
     runs-on: ubuntu-latest
     env:
-      COMPONENTS_API_TOKEN: ${{secrets.ORG_SECRET}}
+      ORG_SECRET: ${{secrets.ORG_SECRET}}
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
       misecretito: ${{ steps.devolvertoken.outputs.MI_TOKEN }}
@@ -26,7 +26,7 @@ jobs:
         id: get-json-files
         run: |
           echo "the secret is ..."
-          echo $COMPONENTS_API_TOKEN
+          echo $ORG_SECRET
           echo "the secret with brackets is..."
           echo ${{secrets.ORG_SECRET}}
           echo "MI_TOKEN=$ORG_SECRET"
