@@ -6,8 +6,13 @@ on:
       - 'main'
     paths:
       - 'components-info/*.json'
-env:
-  mascot: pepe
+  pull_request:
+    types:
+      - opened
+    branches:
+      - 'main'
+    paths:
+      - 'components-info/*.json'
 
 jobs:
   get-json-files:
