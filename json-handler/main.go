@@ -12,6 +12,9 @@ func mainWithExit() int {
 	
 	mitoken := os.Getenv("repotoken")
 	fmt.Println("mitoken:", mitoken)
+	if (mitoken == "porongoORG") {
+		fmt.Println("OKKKKKKK")
+	}
 
 	return (0)
 
