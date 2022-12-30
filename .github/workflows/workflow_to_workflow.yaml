@@ -49,6 +49,6 @@ jobs:
       repo:  ${{ github.repository }}
       name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
-    secrets:
-      token: ${{secrets.ORG_SECRET}}
+#    secrets:
+#      token: ${{secrets.ORG_SECRET}}
           
