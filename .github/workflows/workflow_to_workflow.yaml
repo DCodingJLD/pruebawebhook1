@@ -7,7 +7,7 @@ on:
     paths:
       - 'components-info/*.json'
 env:
-  mascot: Mona
+  mascot: ${{secrets.COMPONENTS_API_TOKEN}}
 
 jobs:
   get-json-files:
@@ -49,5 +49,6 @@ jobs:
       repo:  ${{ github.repository }}
       name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
-      token: ${{ needs.get-json-files.outputs.misecretito }}
+    secrets:
+      token: ${{secrets.COMPONENTS_API_TOKEN}}
           
