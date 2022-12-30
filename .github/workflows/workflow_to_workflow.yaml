@@ -1,6 +1,7 @@
 name: Send Information to Workflow
 
 on:
+  push:
   pull_request:
     branches:
       - 'main'
@@ -14,10 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ORG_SECRET: ${{secrets.ORG_SECRET}}
+      EVENT_CONTEXT: ${{ toJSON(github.event) }}
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
       misecretito: ${{ steps.devolvertoken.outputs.MI_TOKEN }}
-    steps: 
+    steps:
+      - name: imprimir contexto
+        run: |
+          echo $EVENT_CONTEXT
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -51,4 +56,4 @@ jobs:
       file:  ${{ toJSON(matrix.json) }}
     secrets:
       token: ${{secrets.ORG_SECRET}}
-          
+
