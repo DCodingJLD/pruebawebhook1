@@ -13,9 +13,9 @@ on:
       file:
         required: false
         type: string
-#    secrets:
-#      token:
-#        required: false
+    secrets:
+      token:
+        required: false
 
 jobs:
   triage:
@@ -24,7 +24,7 @@ jobs:
       repo: ${{ inputs.repo }}
       name: ${{ inputs.name }}
       file: ${{ inputs.file }}
-      repotoken: ${{secrets.ORG_SECRET}}
+      repotoken: ${{secrets.token}}
     defaults:
       run:
         working-directory: json-handler
@@ -47,7 +47,7 @@ jobs:
           echo "secrets are $repotoken"
           echo $repotoken
           echo "ahora sin bracket"
-          echo ${{secrets.ORG_SECRET}}
+          echo ${{secrets.token}}
           FILEN=$file
           # remove carry return\eol\tab
           FILES="${FILEN//[$'\r\n\t']}" 
