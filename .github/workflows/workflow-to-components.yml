@@ -13,9 +13,9 @@ on:
       file:
         required: false
         type: string
+    secrets:
       token:
         required: false
-        type: string
 
 jobs:
   triage:
@@ -24,7 +24,7 @@ jobs:
       repo: ${{ inputs.repo }}
       name: ${{ inputs.name }}
       file: ${{ inputs.file }}
-      token: ${{inputs.token}}
+      repo-token: ${{secrets.token}}
     defaults:
       run:
         working-directory: json-handler
@@ -44,10 +44,10 @@ jobs:
           echo "the token is : $token"
       - name: Changing sed
         run: |
-          echo "secrets are $token"
-          echo $token
+          echo "secrets are $repo-token"
+          echo $repo-token
           echo "ahora sin bracket"
-          echo ${{inputs.token}}
+          echo ${{secrets.token}}
           FILEN=$file
           # remove carry return\eol\tab
           FILES="${FILEN//[$'\r\n\t']}" 
