@@ -50,5 +50,5 @@ jobs:
       name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
     secrets:
-      token: ${{secrets.COMPONENTS_API_TOKEN}}
+      token: $mascot
           
