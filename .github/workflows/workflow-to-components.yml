@@ -15,7 +15,7 @@ on:
         type: string
       is_pr:
         required: false
-        type: boolean
+        type: string
     secrets:
       token:
         required: false
