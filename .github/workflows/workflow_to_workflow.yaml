@@ -28,7 +28,7 @@ jobs:
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
       misecretito: ${{ steps.devolvertoken.outputs.MI_TOKEN }}
-      ispr: ${{ steps. }}
+      ispr: ${{ steps.determineworkflow.outputs.IS_PR }}
     steps:
       - name: imprimir contexto
         run: |
@@ -44,7 +44,7 @@ jobs:
           echo "ghea:..."
           echo $github.event.action
           echo $IS_PR
-          echo "$IS_PR=$IS_TRUE" >> $GITHUB_OUTPUT
+          echo "IS_PR=$IS_TRUE" >> $GITHUB_OUTPUT
           echo $IS_PR
       - name: Get JSON files
         id: get-json-files
