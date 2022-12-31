@@ -50,8 +50,6 @@ jobs:
       - name: Get JSON files
         id: get-json-files
         run: |
-          echo "the ouput is:..."
-          echo ${{ outputs.is_pr }}
           echo "the secret is ..."
           echo $ORG_SECRET
           echo "the secret with brackets is..."
@@ -74,7 +72,8 @@ jobs:
     uses: DCodingJLD/pruebawebhook1/.github/workflows/workflow-to-components.yml@main
     with:
       repo:  ${{ github.repository }}
-      name:  ${{ matrix.json.name }}
+#      name:  ${{ matrix.json.name }}
+      name:  ${{ needs.get-json-files.outputs.ispr }}
       file:  ${{ toJSON(matrix.json) }}
     secrets:
       token: ${{secrets.ORG_SECRET}}
