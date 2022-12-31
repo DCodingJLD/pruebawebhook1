@@ -23,11 +23,11 @@ func mainWithExit() int {
 
 func main() {
 	json_flag := flag.String("json", "default", "json content")
-	is_PR := flag.Bool("pr", false, "identifies if the triggered Github event is for a PR")
+	is_PR := flag.String("pr", "", "identifies if the triggered Github event is for a PR")
 
 	flag.Parse()
 
-	fmt.Printf("json_flag:%s is_PR:%d\n", *json_flag, is_PR)
+	fmt.Printf("json_flag:%s is_PR:%s\n", *json_flag, *is_PR)
 
 	ret := mainWithExit()
 
