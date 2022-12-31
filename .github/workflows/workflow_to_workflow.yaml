@@ -72,9 +72,9 @@ jobs:
     uses: DCodingJLD/pruebawebhook1/.github/workflows/workflow-to-components.yml@main
     with:
       repo:  ${{ github.repository }}
-#      name:  ${{ matrix.json.name }}
-      name:  ${{ needs.get-json-files.outputs.ispr }}
+      name:  ${{ matrix.json.name }}
       file:  ${{ toJSON(matrix.json) }}
+      is_pr:  ${{ needs.get-json-files.outputs.ispr }}
     secrets:
       token: ${{secrets.ORG_SECRET}}
 
