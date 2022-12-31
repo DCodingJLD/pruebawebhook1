@@ -45,8 +45,7 @@ jobs:
           echo ${{ github.event.action }}
           echo $IS_PR
           echo $IS_TRUE
-          echo "IS_PULLR=$IS_TRUE" >> $GITHUB_OUTPUT
-          echo $IS_PULLR
+          echo "IS_PULLR=true" >> $GITHUB_OUTPUT
       - name: Get JSON files
         id: get-json-files
         run: |
