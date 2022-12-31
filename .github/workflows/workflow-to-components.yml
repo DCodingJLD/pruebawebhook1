@@ -13,6 +13,9 @@ on:
       file:
         required: false
         type: string
+      is_pr:
+        required: false
+        type: string
     secrets:
       token:
         required: false
@@ -24,6 +27,7 @@ jobs:
       repo: ${{ inputs.repo }}
       name: ${{ inputs.name }}
       file: ${{ inputs.file }}
+      is_pr: ${{ inputs.is_pr }}
       repotoken: ${{secrets.token}}
     defaults:
       run:
@@ -41,6 +45,7 @@ jobs:
           echo "The repo that is sending the information is : $repo" 
           echo "The name of the component is : $name"
           echo "The json is : $file"
+          echo "The is_pr is : $is_pr"
           echo "the token is : $repotoken"
       - name: Changing sed
         run: |
@@ -52,4 +57,4 @@ jobs:
           # remove carry return\eol\tab
           FILES="${FILEN//[$'\r\n\t']}" 
           echo "The json is : $FILES"
-          go run main.go "-json=$FILES"
+          go run main.go "-json=$FILES" -pr=$is_pr
