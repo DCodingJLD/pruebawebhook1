@@ -17,6 +17,7 @@ on:
 
 env:
   IS_PR: false
+  IS_TRUE: true
 
 jobs:
   get-json-files:
@@ -27,6 +28,7 @@ jobs:
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
       misecretito: ${{ steps.devolvertoken.outputs.MI_TOKEN }}
+      ispr: ${{ steps. }}
     steps:
       - name: imprimir contexto
         run: |
@@ -36,12 +38,13 @@ jobs:
         with:
             path: './'
       - name: determin_workflow
+        id: determineworkflow
         if: github.event.pull_request && (github.event.action == 'opened' || github.event.action == 'synchronize')
         run: |
           echo "ghea:..."
-          echo github.event.action
+          echo $github.event.action
           echo $IS_PR
-          $IS_PR=true
+          echo "$IS_PR=$IS_TRUE" >> $GITHUB_OUTPUT
           echo $IS_PR
       - name: Get JSON files
         id: get-json-files
