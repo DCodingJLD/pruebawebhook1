@@ -51,7 +51,7 @@ jobs:
         id: get-json-files
         run: |
           echo "the ouput is:..."
-          echo ${{ get-json-files.outputs.is_pr }}
+          echo ${{ outputs.is_pr }}
           echo "the secret is ..."
           echo $ORG_SECRET
           echo "the secret with brackets is..."
