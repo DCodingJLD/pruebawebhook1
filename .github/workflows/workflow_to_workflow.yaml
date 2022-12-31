@@ -28,7 +28,7 @@ jobs:
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
       misecretito: ${{ steps.devolvertoken.outputs.MI_TOKEN }}
-      ispr: ${{ steps.determineworkflow.outputs.IS_PR }}
+      ispr: ${{ steps.determineworkflow.outputs.IS_PULLR }}
     steps:
       - name: imprimir contexto
         run: |
@@ -45,11 +45,13 @@ jobs:
           echo ${{ github.event.action }}
           echo $IS_PR
           echo $IS_TRUE
-          echo "IS_PR=$IS_TRUE" >> $GITHUB_OUTPUT
-          echo $IS_PR
+          echo "IS_PULLR=$IS_TRUE" >> $GITHUB_OUTPUT
+          echo $IS_PULLR
       - name: Get JSON files
         id: get-json-files
         run: |
+          echo "the ouput is:..."
+          echo ${{ get-json-files.outputs.is_pr }}
           echo "the secret is ..."
           echo $ORG_SECRET
           echo "the secret with brackets is..."
