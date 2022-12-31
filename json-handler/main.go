@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 )
@@ -9,10 +10,10 @@ func mainWithExit() int {
 	defer fmt.Println("difiere")
 
 	fmt.Println("funcionnnnnn")
-	
+
 	mitoken := os.Getenv("repotoken")
 	fmt.Println("mitoken:", mitoken)
-	if (mitoken == "porongoORG") {
+	if mitoken == "porongoORG" {
 		fmt.Println("OKKKKKKK")
 	}
 
@@ -21,6 +22,12 @@ func mainWithExit() int {
 }
 
 func main() {
+	json_flag := flag.String("json", "default", "json content")
+	is_PR := flag.Bool("pr", false, "identifies if the triggered Github event is for a PR")
+
+	flag.Parse()
+
+	fmt.Printf("json_flag:%s is_PR:%d\n", *json_flag, is_PR)
 
 	ret := mainWithExit()
 
