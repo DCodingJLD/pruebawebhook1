@@ -17,7 +17,6 @@ on:
 
 env:
   IS_PR: false
-  IS_TRUE: true
 
 jobs:
   get-json-files:
