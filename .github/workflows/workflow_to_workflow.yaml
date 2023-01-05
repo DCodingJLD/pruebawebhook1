@@ -23,7 +23,7 @@ jobs:
   get-json-files:
     runs-on: ubuntu-latest
     env:
-      COMPONENT_GHA_JSON_TOKEN: ${{secrets.COMPONENT_GHA_JSON_TOKEN}}
+      COMPONENTS_GHA_JSON_TOKEN: ${{secrets.COMPONENTS_GHA_JSON_TOKEN}}
       EVENT_CONTEXT: ${{ toJSON(github.event) }}
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
@@ -51,16 +51,16 @@ jobs:
         id: get-json-files
         run: |
           echo "the secret is ..."
-          echo $COMPONENT_GHA_JSON_TOKEN
+          echo $COMPONENTS_GHA_JSON_TOKEN
           echo "the secret with brackets is..."
-          echo ${{secrets.COMPONENT_GHA_JSON_TOKEN}}
-          echo "MI_TOKEN=$COMPONENT_GHA_JSON_TOKEN"
+          echo ${{secrets.COMPONENTS_GHA_JSON_TOKEN}}
+          echo "MI_TOKEN=$COMPONENTS_GHA_JSON_TOKEN"
           cd './components-info'
           jq -s '.' *.json > joined.json
           echo "JSON_DATA=$(jq -c . < joined.json)" >> $GITHUB_OUTPUT
       - name: Devolver token si dios quiere
         id: devolvertoken
-        run: echo "MI_TOKEN=$COMPONENT_GHA_JSON_TOKEN" >> $GITHUB_OUTPUT
+        run: echo "MI_TOKEN=$COMPONENTS_GHA_JSON_TOKEN" >> $GITHUB_OUTPUT
   call-workflow-passing-data:
     needs: get-json-files
     strategy:
@@ -76,5 +76,5 @@ jobs:
       file:  ${{ toJSON(matrix.json) }}
       is_pr:  ${{ needs.get-json-files.outputs.ispr }}
     secrets:
-      token: ${{secrets.COMPONENT_GHA_JSON_TOKEN}}
+      token: ${{secrets.COMPONENTS_GHA_JSON_TOKEN}}
 
