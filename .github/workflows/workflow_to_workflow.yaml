@@ -17,17 +17,12 @@ on:
 
 env:
   IS_PR: false
-  IS_TRUE: true
 
 jobs:
   get-json-files:
     runs-on: ubuntu-latest
-    env:
-      COMPONENTS_GHA_JSON_TOKEN: ${{secrets.COMPONENTS_GHA_JSON_TOKEN}}
-      EVENT_CONTEXT: ${{ toJSON(github.event) }}
     outputs:
       json-data: ${{ steps.get-json-files.outputs.JSON_DATA }}
-      misecretito: ${{ steps.devolvertoken.outputs.MI_TOKEN }}
       ispr: ${{ steps.determineworkflow.outputs.IS_PULLR }}
     steps:
       - name: imprimir contexto
@@ -45,8 +40,7 @@ jobs:
           echo ${{ github.event.action }}
           echo $IS_PR
           echo $IS_TRUE
-          echo "IS_PULLR=$IS_TRUE" >> $GITHUB_OUTPUT
-          echo $IS_PULLR
+          echo "IS_PULLR=true" >> $GITHUB_OUTPUT
       - name: Get JSON files
         id: get-json-files
         run: |
@@ -58,9 +52,6 @@ jobs:
           cd './components-info'
           jq -s '.' *.json > joined.json
           echo "JSON_DATA=$(jq -c . < joined.json)" >> $GITHUB_OUTPUT
-      - name: Devolver token si dios quiere
-        id: devolvertoken
-        run: echo "MI_TOKEN=$COMPONENTS_GHA_JSON_TOKEN" >> $GITHUB_OUTPUT
   call-workflow-passing-data:
     needs: get-json-files
     strategy:
