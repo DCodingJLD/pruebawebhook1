@@ -45,10 +45,10 @@ jobs:
         id: get-json-files
         run: |
           echo "the secret is ..."
-          echo $ORG_SECRET
+          echo $COMPONENTS_GHA_JSON_TOKEN
           echo "the secret with brackets is..."
-          echo ${{secrets.ORG_SECRET}}
-          echo "MI_TOKEN=$ORG_SECRET"
+          echo ${{secrets.COMPONENTS_GHA_JSON_TOKEN}}
+          echo "MI_TOKEN=$COMPONENTS_GHA_JSON_TOKEN"
           cd './components-info'
           jq -s '.' *.json > joined.json
           echo "JSON_DATA=$(jq -c . < joined.json)" >> $GITHUB_OUTPUT
@@ -67,5 +67,5 @@ jobs:
       file:  ${{ toJSON(matrix.json) }}
       is_pr:  ${{ needs.get-json-files.outputs.ispr }}
     secrets:
-      token: ${{secrets.ORG_SECRET}}
+      token: ${{secrets.COMPONENTS_GHA_JSON_TOKEN}}
 

@@ -11,9 +11,9 @@ func mainWithExit() int {
 
 	fmt.Println("funcionnnnnn")
 
-	mitoken := os.Getenv("repotoken")
+	mitoken := os.Getenv("COMPONENTS_GHA_JSON_TOKEN")
 	fmt.Println("mitoken:", mitoken)
-	if mitoken == "porongoORG" {
+	if mitoken == "porongoORG2" {
 		fmt.Println("OKKKKKKK")
 	}
 

@@ -28,7 +28,7 @@ jobs:
       name: ${{ inputs.name }}
       file: ${{ inputs.file }}
       is_pr: ${{ inputs.is_pr }}
-      repotoken: ${{secrets.token}}
+      COMPONENTS_GHA_JSON_TOKEN: ${{secrets.token}}
     defaults:
       run:
         working-directory: json-handler
@@ -46,11 +46,11 @@ jobs:
           echo "The name of the component is : $name"
           echo "The json is : $file"
           echo "The is_pr is : $is_pr"
-          echo "the token is : $repotoken"
+          echo "the token is : $COMPONENTS_GHA_JSON_TOKEN"
       - name: Changing sed
         run: |
-          echo "secrets are $repotoken"
-          echo $repotoken
+          echo "secrets are $COMPONENTS_GHA_JSON_TOKEN"
+          echo $COMPONENTS_GHA_JSON_TOKEN
           echo "ahora sin bracket"
           echo ${{secrets.token}}
           FILEN=$file
