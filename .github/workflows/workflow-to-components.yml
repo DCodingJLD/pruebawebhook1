@@ -40,7 +40,6 @@ jobs:
           token: ${{ github.token }}
       - name: listar nuevo repo
         run: |
-          cd ..
           ls -all
           cd my-tools
           ls -all
