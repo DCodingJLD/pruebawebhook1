@@ -36,10 +36,11 @@ jobs:
       - name: Check out repo's default branch
         uses: actions/checkout@v3
       - name: Check out the master repo default branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: DCodingJLD/pruebawebhook1
-          path: './bar'        
+          path: docs/2.x
+          ref: 2.x   
       - name: listar nuevo repo
         run: |
           ls -all
