@@ -35,11 +35,11 @@ jobs:
     steps:
       - name: Check out repo's default branch
         uses: actions/checkout@v3
-      - name: Check out the master repo default branch
-        uses: sudosubin/git-clone-action@v1
+      - name: Check out el otro
+        uses: actions/checkout@v3
         with:
-          repository: 'DCodingJLD/pruebawebhook1'
-          platform: 'github'
+          repository: DCodingJLD/pruebawebhook1
+          path: my-tools
       - name: listar nuevo repo
         run: |
           ls -all
