@@ -41,7 +41,7 @@ jobs:
       - name: listar nuevo repo
         run: |
           ls -all
-          cd my-tools
+          cd my-tools/json-handler
           ls -all
       - name: Set up Go
         uses: actions/setup-go@v3
