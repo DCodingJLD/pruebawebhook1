@@ -29,6 +29,9 @@ jobs:
       file: ${{ inputs.file }}
       is_pr: ${{ inputs.is_pr }}
       COMPONENTS_GHA_JSON_TOKEN: ${{secrets.token}}
+    defaults:
+      run:
+        working-directory: my-tools/json-handler
     steps:
       - name: Check out repo's default branch
         uses: actions/checkout@v3
@@ -40,8 +43,7 @@ jobs:
           token: ${{ github.token }}
       - name: listar nuevo repo
         run: |
-          ls -all
-          cd my-tools/json-handler
+          pwd
           ls -all
       - name: Set up Go
         uses: actions/setup-go@v3
