@@ -31,7 +31,7 @@ jobs:
       COMPONENTS_GHA_JSON_TOKEN: ${{secrets.token}}
     defaults:
       run:
-        working-directory: json-handler
+        working-directory: DCodingJLD/pruebawebhook1/json-handler
     steps:
       - name: Check out repo's default branch
         uses: actions/checkout@v3
