@@ -43,8 +43,9 @@ jobs:
           token: ${{ github.token }}
       - name: listar nuevo repo
         run: |
+          cd ..
           ls -all
-          cd bar
+          cd my-tools
           ls -all
       - name: Set up Go
         uses: actions/setup-go@v3
