@@ -36,7 +36,7 @@ jobs:
       - name: Check out repo's default branch
         uses: actions/checkout@v3
       - name: Check out the master repo default branch
-      - uses: sudosubin/git-clone-action@v1
+        uses: sudosubin/git-clone-action@v1
         with:
           repository: 'DCodingJLD/pruebawebhook1'
           platform: 'github'
